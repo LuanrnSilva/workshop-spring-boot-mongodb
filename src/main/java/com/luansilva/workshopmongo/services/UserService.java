@@ -2,6 +2,7 @@ package com.luansilva.workshopmongo.services;
 
 
 import com.luansilva.workshopmongo.domain.User;
+import com.luansilva.workshopmongo.dto.UserDTO;
 import com.luansilva.workshopmongo.repository.UserRepository;
 import com.luansilva.workshopmongo.services.exception.ObjectNotFoundException;
 
@@ -25,5 +26,12 @@ public class UserService {
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
+    public User insert(User obj) {
+        return repo.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+    }
 
 }
